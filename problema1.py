@@ -1,36 +1,37 @@
-global z
-
-def combinaciones (div,suma,pos,n):
-
-	suma += div[pos]
-	
-	if suma == n:
-		z = True
-	else:
-		for i in range(pos+1,len(div)):
-			#print(pos)
-			combinaciones(div,suma,pos+1,n)
-			
-
-
+def combinatoria(divisores,band,total,pos,n):
+    total += divisores[pos]
+    print(pos , len(divisores), total, band)
+    if total == n :
+        print('cambiar booleano')
+        band = True
+        total = 0
+    else:
+        for i in range(pos+1,len(divisores)):#que pasa con las funciones, no guarda la mod de las variables
+            combinatoria(divisores,band,total,i,n)
+        #while pos < len(divisores)-1 and not band:
+        #    combinatoria(divisores,band,total,i,n) #ciclo infinito, porque?
+    return band
 
 
 def problema1ParcialPreparadores():
-	n = 18
-	z = False
-	divisores = []
-	for i in range(1,n//2+1):
-		if n % i == 0 :
-			divisores.append(i)
+    n = int(input('ingrese el numero a revisar:'))
 
-	suma = 0
-	pos = 0
-	combinaciones(divisores,suma,pos,n)
+    div = []
+    for i in range(1,n//2+1):
+        if n % i == 0:
+            div.append(i)
 
-	if z :
-		print('El nro es semiperfecto')
-	else:
-		print('NO es semiperfecto')
+    s_perf = False
+    total = 0
+    for i in range(0,len(div)):
+        combinatoria(div,s_perf,total,i,n)
 
+    if s_perf:
+        print('Si es semiperfecto')
+    else:
+        print('NO es semiperfecto')
+
+#    for i in range(0,len(div)):
+#        print(div[i])
 
 problema1ParcialPreparadores()
