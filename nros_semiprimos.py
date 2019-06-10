@@ -1,24 +1,33 @@
 def primo(n):
 	Boo = True
-	for i in range(2,n):
+	i = 1
+	while Boo and i in range(1,n//2):
+		i += 1
 		if n % i == 0:
 			Boo = False;
 	return Boo
 
 
+
+def semiPrimo(n):
+	semi_primo = False
+	i = 1
+	while not(semi_primo) and i in range(1,n//2):
+		i += 1
+		if (n % i == 0) and primo(i) and primo(n // i):
+			semi_primo = True
+	return semi_primo
+
+
+
 def buscar(n,c,lista_semiprimos):
-	x = n
+	i = n
 	while c>len(lista_semiprimos) :
+		if semiPrimo(i):
+			lista_semiprimos.append(i)
+		i += 1
 
-		semi_primo = False
-		i = 2
-		while not(semi_primo) and i<x//2+1:
-			if (x % i == 0) and primo(i) and primo(x // i):
-				lista_semiprimos.append(x)
-				semi_primo = True
-			i+=1
 
-		x+=1
 	return lista_semiprimos
 
 
