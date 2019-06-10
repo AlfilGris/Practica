@@ -1,25 +1,25 @@
 def primo(n):
-	Boo = False
+	Boo = True
 	for i in range(2,n):
 		if n % i == 0:
-			boo = True;
+			Boo = False;
 	return Boo
 
 
-def buscar(n,c,numeros_semi_primos):
-	x = c
-	while c>len(numeros_semi_primos) :
+def buscar(n,c,lista_semiprimos):
+	x = n
+	while c>len(lista_semiprimos) :
 
 		semi_primo = False
 		i = 2
-		while not(semi_primo) or i<x//2+1:
+		while not(semi_primo) and i<x//2+1:
 			if (x % i == 0) and primo(i) and primo(x // i):
-				numeros_semi_primos.append(x)
+				lista_semiprimos.append(x)
 				semi_primo = True
 			i+=1
 
 		x+=1
-	return numeros_semi_primos
+	return lista_semiprimos
 
 
 
